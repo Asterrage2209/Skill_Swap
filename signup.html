@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - SkillSwap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --success: #4ade80;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7ff, #e6f0ff);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .user-actions .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-home {
+            background: var(--accent);
+        }
+
+        .btn-login {
+            background: var(--warning);
+        }
+
+        .btn-home:hover, .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Main Content */
+        .signup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 40px 0;
+        }
+
+        .signup-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 1000px;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .signup-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .signup-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .signup-header p {
+            opacity: 0.9;
+        }
+
+        .signup-body {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            width: 100%;
+        }
+
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            border-right: 1px solid var(--light-gray);
+        }
+
+        .profile-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .input-with-icon input, 
+        .input-with-icon select {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-with-icon input:focus, 
+        .input-with-icon select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            outline: none;
+        }
+
+        .form-footer {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-save {
+            padding: 14px 30px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(67, 97, 238, 0.3);
+            flex: 1;
+        }
+
+        .btn-cancel {
+            padding: 14px 30px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .btn-save:hover, .btn-cancel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Profile Photo Section */
+        .profile-photo-container {
+            position: relative;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--light);
+            border: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-photo i {
+            font-size: 3.5rem;
+            color: var(--gray);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .upload-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            width: 100%;
+        }
+
+        .skills-section {
+            margin-bottom: 25px;
+        }
+
+        .skills-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .skills-input-container {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .skills-input-container input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+        }
+
+        .skills-input-container button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-tag.offered {
+            background: #e3f2fd;
+            color: var(--primary);
+        }
+
+        .skill-tag.wanted {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .skill-tag .remove-skill {
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 0 15px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #495057;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .signup-card {
+                margin: 0 20px;
+            }
+            
+            .signup-body {
+                flex-direction: column;
+            }
+            
+            .form-section {
+                border-right: none;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .signup-header {
+                padding: 20px;
+            }
+            
+            .signup-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-section, .profile-section {
+                padding: 20px;
+            }
+            
+            .user-actions .btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .form-footer {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>SkillSwap</span>
+                </a>
+                <div class="user-actions">
+                    <a href="index.html" class="btn btn-home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="login.html" class="btn btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="signup-header">
+                <h2>Create Your SkillSwap Profile</h2>
+                <p>Join our community of skill exchangers</p>
+            </div>
+            <div class="signup-body">
+                <div class="form-section">
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="fullName" placeholder="Enter your full name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-at"></i>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location"><i class="fas fa-map-marker-alt"></i> Location</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-city"></i>
+                                <input type="text" id="location" placeholder="City, Country">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="availability"><i class="fas fa-calendar-alt"></i> Availability</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-clock"></i>
+                                <select id="availability">
+                                    <option value="">Select your availability</option>
+                                    <option value="weekends">Weekends</option>
+                                    <option value="evenings">Evenings</option>
+                                    <option value="weekdays">Weekdays</option>
+                                    <option value="flexible">Flexible Schedule</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password"><i class="fas fa-lock"></i> Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-key"></i>
+                                <input type="password" id="password" placeholder="Create a password" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-key"></i>
+                                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="profile-photo-container">
+                        <div class="profile-photo" id="profilePhoto">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <button class="upload-btn" id="uploadBtn">Upload Photo</button>
+                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    </div>
+                    
+                    <div class="skills-container">
+                        <div class="skills-section">
+                            <h3><i class="fas fa-share"></i> Skills I Offer</h3>
+                            <div class="skills-input-container">
+                                <input type="text" id="newOfferedSkill" placeholder="Add a skill you offer">
+                                <button id="addOfferedSkill">Add</button>
+                            </div>
+                            <div class="skills-list" id="offeredSkillsList">
+                                <!-- Skills will be added here -->
+                            </div>
+                        </div>
+                        
+                        <div class="skills-section">
+                            <h3><i class="fas fa-heart"></i> Skills I Want</h3>
+                            <div class="skills-input-container">
+                                <input type="text" id="newWantedSkill" placeholder="Add a skill you want">
+                                <button id="addWantedSkill">Add</button>
+                            </div>
+                            <div class="skills-list" id="wantedSkillsList">
+                                <!-- Skills will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-footer" style="width: 100%; padding: 20px 30px; background: var(--light);">
+                <button class="btn-save" id="saveBtn">Create Account</button>
+                <button class="btn-cancel" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SkillSwap</h3>
+                    <p>Connecting people through skill exchange to foster learning and community building.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Browse Skills</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> How It Works</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul class="footer-links">
+                        <li><a href="login.html"><i class="fas fa-chevron-right"></i> Login</a></li>
+                        <li><a href="signup.html"><i class="fas fa-chevron-right"></i> Sign Up</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@skillsawp.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> New York, NY</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 SkillSwap. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const profilePhoto = document.getElementById('profilePhoto');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const photoInput = document.getElementById('photoInput');
+        const addOfferedSkillBtn = document.getElementById('addOfferedSkill');
+        const addWantedSkillBtn = document.getElementById('addWantedSkill');
+        const newOfferedSkill = document.getElementById('newOfferedSkill');
+        const newWantedSkill = document.getElementById('newWantedSkill');
+        const offeredSkillsList = document.getElementById('offeredSkillsList');
+        const wantedSkillsList = document.getElementById('wantedSkillsList');
+        const saveBtn = document.getElementById('saveBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const signupForm = document.getElementById('signupForm');
+
+        // Profile Photo Upload
+        uploadBtn.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    profilePhoto.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    profilePhoto.appendChild(img);
+                }
+                
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        // Add Offered Skill
+        addOfferedSkillBtn.addEventListener('click', () => {
+            const skill = newOfferedSkill.value.trim();
+            if (skill) {
+                addSkill(skill, 'offered');
+                newOfferedSkill.value = '';
+            }
+        });
+
+        // Add Wanted Skill
+        addWantedSkillBtn.addEventListener('click', () => {
+            const skill = newWantedSkill.value.trim();
+            if (skill) {
+                addSkill(skill, 'wanted');
+                newWantedSkill.value = '';
+            }
+        });
+
+        // Add Skill Function
+        function addSkill(skill, type) {
+            const skillTag = document.createElement('div');
+            skillTag.className = `skill-tag ${type}`;
+            skillTag.innerHTML = `
+                ${skill}
+                <span class="remove-skill"><i class="fas fa-times"></i></span>
+            `;
+            
+            const removeBtn = skillTag.querySelector('.remove-skill');
+            removeBtn.addEventListener('click', () => {
+                skillTag.remove();
+            });
+            
+            if (type === 'offered') {
+                offeredSkillsList.appendChild(skillTag);
+            } else {
+                wantedSkillsList.appendChild(skillTag);
+            }
+        }
+
+        // Form Validation and Submission
+        saveBtn.addEventListener('click', () => {
+            // Basic validation
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (!name || !email || !password || !confirmPassword) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Get skills
+            const offeredSkills = Array.from(offeredSkillsList.querySelectorAll('.skill-tag')).map(tag => tag.textContent.replace('×', '').trim());
+            const wantedSkills = Array.from(wantedSkillsList.querySelectorAll('.skill-tag')).map(tag => tag.textContent.replace('×', '').trim());
+            
+            // Get other data
+            const location = document.getElementById('location').value;
+            const availability = document.getElementById('availability').value;
+            
+            // Create user object
+            const user = {
+                name,
+                email,
+                location,
+                availability,
+                offeredSkills,
+                wantedSkills
+            };
+            
+            // In a real app, you would send this to your backend
+            console.log('User created:', user);
+            
+            // Show success message
+            alert('Account created successfully! Redirecting to your profile...');
+            
+            // Redirect to profile page in a real app
+            // window.location.href = 'viewprofile.html';
+            showProfileView(user);
+        });
+
+        // Cancel button
+        cancelBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+                signupForm.reset();
+                offeredSkillsList.innerHTML = '';
+                wantedSkillsList.innerHTML = '';
+                profilePhoto.innerHTML = '<i class="fas fa-camera"></i>';
+            }
+        });
+
+        // Enter key for adding skills
+        newOfferedSkill.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addOfferedSkillBtn.click();
+            }
+        });
+        
+        newWantedSkill.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addWantedSkillBtn.click();
+            }
+        });
+
+        // Show profile view (for demo purposes)
+        function showProfileView(user) {
+            // Hide signup container
+            document.querySelector('.signup-container').style.display = 'none';
+            
+            // Create profile container
+            const profileContainer = document.createElement('div');
+            profileContainer.className = 'signup-container';
+            profileContainer.innerHTML = `
+                <div class="signup-card">
+                    <div class="signup-header">
+                        <h2>Your SkillSwap Profile</h2>
+                        <p>Manage your personal information and skills</p>
+                    </div>
+                    <div class="signup-body">
+                        <div class="form-section">
+                            <form id="profileForm">
+                                <div class="form-group">
+                                    <label for="profileName"><i class="fas fa-user"></i> Full Name</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="profileName" value="${user.name}" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profileLocation"><i class="fas fa-map-marker-alt"></i> Location</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-city"></i>
+                                        <input type="text" id="profileLocation" value="${user.location || ''}">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profileAvailability"><i class="fas fa-calendar-alt"></i> Availability</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-clock"></i>
+                                        <select id="profileAvailability">
+                                            <option value="" ${user.availability ? '' : 'selected'}>Select your availability</option>
+                                            <option value="weekends" ${user.availability === 'weekends' ? 'selected' : ''}>Weekends</option>
+                                            <option value="evenings" ${user.availability === 'evenings' ? 'selected' : ''}>Evenings</option>
+                                            <option value="weekdays" ${user.availability === 'weekdays' ? 'selected' : ''}>Weekdays</option>
+                                            <option value="flexible" ${user.availability === 'flexible' ? 'selected' : ''}>Flexible Schedule</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <div class="profile-photo-container">
+                                <div class="profile-photo" id="profilePhotoEdit">
+                                    ${profilePhoto.innerHTML}
+                                </div>
+                                <button class="upload-btn" id="uploadBtnEdit">Change Photo</button>
+                                <input type="file" id="photoInputEdit" accept="image/*" style="display: none;">
+                            </div>
+                            
+                            <div class="skills-container">
+                                <div class="skills-section">
+                                    <h3><i class="fas fa-share"></i> Skills I Offer</h3>
+                                    <div class="skills-input-container">
+                                        <input type="text" id="newOfferedSkillEdit" placeholder="Add a skill you offer">
+                                        <button id="addOfferedSkillEdit">Add</button>
+                                    </div>
+                                    <div class="skills-list" id="offeredSkillsListEdit">
+                                        ${offeredSkillsList.innerHTML}
+                                    </div>
+                                </div>
+                                
+                                <div class="skills-section">
+                                    <h3><i class="fas fa-heart"></i> Skills I Want</h3>
+                                    <div class="skills-input-container">
+                                        <input type="text" id="newWantedSkillEdit" placeholder="Add a skill you want">
+                                        <button id="addWantedSkillEdit">Add</button>
+                                    </div>
+                                    <div class="skills-list" id="wantedSkillsListEdit">
+                                        ${wantedSkillsList.innerHTML}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-footer" style="width: 100%; padding: 20px 30px; background: var(--light);">
+                        <button class="btn-save" id="saveProfileBtn">Save Changes</button>
+                        <button class="btn-cancel" id="cancelProfileBtn">Cancel</button>
+                    </div>
+                </div>
+            `;
+            
+            // Add to document
+            document.querySelector('main').appendChild(profileContainer);
+            
+            // Set up event listeners for profile view
+            setupProfileViewEvents();
+        }
+
+        // Set up event listeners for profile view
+        function setupProfileViewEvents() {
+            const uploadBtnEdit = document.getElementById('uploadBtnEdit');
+            const photoInputEdit = document.getElementById('photoInputEdit');
+            const addOfferedSkillEdit = document.getElementById('addOfferedSkillEdit');
+            const addWantedSkillEdit = document.getElementById('addWantedSkillEdit');
+            const newOfferedSkillEdit = document.getElementById('newOfferedSkillEdit');
+            const newWantedSkillEdit = document.getElementById('newWantedSkillEdit');
+            const offeredSkillsListEdit = document.getElementById('offeredSkillsListEdit');
+            const wantedSkillsListEdit = document.getElementById('wantedSkillsListEdit');
+            const saveProfileBtn = document.getElementById('saveProfileBtn');
+            const cancelProfileBtn = document.getElementById('cancelProfileBtn');
+            
+            // Profile photo upload
+            uploadBtnEdit.addEventListener('click', () => {
+                photoInputEdit.click();
+            });
+
+            photoInputEdit.addEventListener('change', (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        const profilePhotoEdit = document.getElementById('profilePhotoEdit');
+                        profilePhotoEdit.innerHTML = '';
+                        const img = document.createElement('img');
+                        img.src = event.target.result;
+                        profilePhotoEdit.appendChild(img);
+                    }
+                    
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            // Add skills functionality
+            addOfferedSkillEdit.addEventListener('click', () => {
+                const skill = newOfferedSkillEdit.value.trim();
+                if (skill) {
+                    addSkillToProfile(skill, 'offered', offeredSkillsListEdit);
+                    newOfferedSkillEdit.value = '';
+                }
+            });
+
+            addWantedSkillEdit.addEventListener('click', () => {
+                const skill = newWantedSkillEdit.value.trim();
+                if (skill) {
+                    addSkillToProfile(skill, 'wanted', wantedSkillsListEdit);
+                    newWantedSkillEdit.value = '';
+                }
+            });
+
+            // Enter key for adding skills
+            newOfferedSkillEdit.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    addOfferedSkillEdit.click();
+                }
+            });
+            
+            newWantedSkillEdit.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    addWantedSkillEdit.click();
+                }
+            });
+
+            // Add skill to profile function
+            function addSkillToProfile(skill, type, container) {
+                const skillTag = document.createElement('div');
+                skillTag.className = `skill-tag ${type}`;
+                skillTag.innerHTML = `
+                    ${skill}
+                    <span class="remove-skill"><i class="fas fa-times"></i></span>
+                `;
+                
+                const removeBtn = skillTag.querySelector('.remove-skill');
+                removeBtn.addEventListener('click', () => {
+                    skillTag.remove();
+                });
+                
+                container.appendChild(skillTag);
+            }
+            
+            // Set up remove skill events
+            document.querySelectorAll('#offeredSkillsListEdit .remove-skill, #wantedSkillsListEdit .remove-skill').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.parentElement.remove();
+                });
+            });
+            
+            // Save profile changes
+            saveProfileBtn.addEventListener('click', () => {
+                alert('Profile updated successfully!');
+                // In a real app, you would send the updated data to your backend
+            });
+            
+            // Cancel profile changes
+            cancelProfileBtn.addEventListener('click', () => {
+                if (confirm('Discard all changes?')) {
+                    document.querySelector('.signup-container:nth-child(2)').remove();
+                    document.querySelector('.signup-container').style.display = 'flex';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
